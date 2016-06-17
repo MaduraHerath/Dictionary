@@ -1,7 +1,11 @@
 import java.lang.*;
 import java.util.ArrayList;
-
+import java.awt.*;
 public class binarysearchtree {
+	int count = 0;
+
+ ArrayList<String> strlist = new ArrayList<String>();
+	String [] a = new String[100];
 	public static Node root;
 	public binarysearchtree(){
 		this.root = null;
@@ -18,7 +22,7 @@ public class binarysearchtree {
 		while(true){
 			parent = current ;
 			//if some thing similler it because "="
-			if(text.compareTo(current.data)<=0){
+			if(text.compareTo(current.data)<0){
 				current = current.left;
 				if(current == null){
 					parent.left = newNode;
@@ -78,22 +82,32 @@ public class binarysearchtree {
 
 
 
-	public ArrayList similler(String Stext){
-		 ArrayList<String> samelst = new ArrayList<String>();
+	public String [] similler(String Stext){
+		 int count = 0;
 		Node current = root;
-
+		
+		
 		while (current != null){
-			if(Stext.compareTo(current.data) ==0){
-				samelst.add(current.mean);
-			}else if (Stext.compareTo(current.data)<0){
-				current = current.left;
-
-			}else{
-				current = current.right;
+			
+			if ((current.mean).equals(Stext)){
+				
 			}
+			else{
+			if(Stext.equals(current.data)){
+				a[count] = (current.mean);
+				current = current.right;
+				count++;
+			}
+				else{
+				current = current.left;
+			}
+		
 			
 		}
-		return samelst;
+	}
+	
+	return a;
+		
 	
 }
 

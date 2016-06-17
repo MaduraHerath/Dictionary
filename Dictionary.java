@@ -30,11 +30,13 @@ JButton InsertBtn = new JButton("Insert");
 String searchStr ;
 String insertStr ;
  String insertStrmean;
- String [] ass;
+
  DefaultListModel listModel = new DefaultListModel();
-    
+    	int btncount = 0;
+    	 String [] ass;
         public class event_SearchButton implements ActionListener {
             public void actionPerformed(ActionEvent e) {
+            	btncount++;
                searchStr = field1.getText().trim().toUpperCase();
                
      
@@ -44,13 +46,16 @@ String insertStr ;
 
 		String displayStr = bs.search(searchStr);
 		textarea.setText(displayStr);
-		//String [] ass = new  String[bs.similler("BOOK").size()];
-			//System.out.println(ass[0]);
+		ass = mbs.similler(hash_function(displayStr));
+		for (int i = 0;i <ass.length ;i++ ) {
 			
-	
-       
-
-            }
+		
+			listModel.addElement(ass[i]);
+					}
+					if (btncount >1){
+       listModel.removeAllElements();
+       btncount =0;
+       }		            }
         }
 
         public class event_InsertButton implements ActionListener {
@@ -109,6 +114,7 @@ String insertStr ;
     		JList list = new JList(listModel);
     	 list.setBounds(10, 50, 150, 200);
     	 mainpanel.add(list);
+
 
     	
     	 textarea.setBounds(170, 50,500, 200);

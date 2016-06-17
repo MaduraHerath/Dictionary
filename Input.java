@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.*;
-class Input{
+class Input extends Dictionary{
 
 	
 	public void getinput(binarysearchtree bs,binarysearchtree mbs ){
@@ -18,7 +18,9 @@ class Input{
                 String [] strlist = currentLine.split("_");
                 Node n = new Node(strlist[0],strlist[1],null);
                 bs.insert(n.data.trim().toUpperCase(),n.mean,n.stringList);
-
+               
+                mbs.insert(hash_function(n.mean),n.data,n.stringList);
+            
 
 	
 
