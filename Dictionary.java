@@ -30,26 +30,25 @@ JButton InsertBtn = new JButton("Insert");
 String searchStr ;
 String insertStr ;
  String insertStrmean;
+ String [] ass;
  DefaultListModel listModel = new DefaultListModel();
     
         public class event_SearchButton implements ActionListener {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                searchStr = field1.getText().trim().toUpperCase();
+               
      
-      bs.insert("CAT","Animal",null);
-		bs.insert("PIZZA","Food",null);
-		bs.insert("BAT","THING",null);
-		bs.insert("BOOK","THING",null);
-		bs.insert("ant","qwe",null);
-		bs.insert("Home","qweq",null);
 
-
-		String displayStr = bs.search(searchStr);
-		textarea.setText(displayStr);
 
 		
 
-        
+		String displayStr = bs.search(searchStr);
+		textarea.setText(displayStr);
+		//String [] ass = new  String[bs.similler("BOOK").size()];
+			//System.out.println(ass[0]);
+			
+	
+       
 
             }
         }
@@ -68,7 +67,7 @@ String insertStr ;
      					insertStrList.add(ne);
      			}
      			
-     			 mbs.insert(hash_function(node.mean),node.data,insertStrList);
+     			 mbs.insert(hash_function(node.mean),null,insertStrList);
      			
      			
      			
@@ -150,6 +149,9 @@ String insertStr ;
     }
 
     public static void main(String[] args) {
+    	
+		Input in = new Input();
+		in.getinput(bs,mbs);
 
         EventQueue.invokeLater(new Runnable() {
         
@@ -193,6 +195,7 @@ public static String  hash_function(String mean){
  
 
  }
+
 
 
 

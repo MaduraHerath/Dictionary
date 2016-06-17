@@ -1,0 +1,6 @@
+Home_place to live
+House_place to live
+CAT_Animal
+PIZZA_Food
+BOOK_THING
+Ant_insect

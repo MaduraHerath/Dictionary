@@ -1,5 +1,6 @@
 import java.lang.*;
 import java.util.ArrayList;
+
 public class binarysearchtree {
 	public static Node root;
 	public binarysearchtree(){
@@ -38,7 +39,7 @@ public class binarysearchtree {
 	public void Display(Node root ){
 		if(root!= null){
 			Display(root.left);
-			System.out.println(" "+root.mean);
+			System.out.println(" "+root.data);
 			Display(root.right);
 		}
 	}
@@ -75,6 +76,36 @@ public class binarysearchtree {
 		return false;
 	}
 
+
+
+	public ArrayList similler(String Stext){
+		 ArrayList<String> samelst = new ArrayList<String>();
+		Node current = root;
+
+		while (current != null){
+			if(Stext.compareTo(current.data) ==0){
+				samelst.add(current.mean);
+			}else if (Stext.compareTo(current.data)<0){
+				current = current.left;
+
+			}else{
+				current = current.right;
+			}
+			
+		}
+		return samelst;
+	
+}
+
+	public static void main(String[] args) {
+		binarysearchtree bs = new binarysearchtree();
+	 binarysearchtree mbs = new binarysearchtree();
+	
+		Input in = new Input();
+		in.getinput(bs,mbs);
+		System.out.println(bs.search("House"));
+		
+	}
 	
 
 }
