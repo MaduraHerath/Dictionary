@@ -8,16 +8,16 @@ class Input extends Dictionary{
 		boolean flag = false;
 		 BufferedReader reader = null;
 		
-		BufferedWriter writer = null;
+		
         try {
          String currentLine;
             reader = new BufferedReader(new FileReader("input.txt"));
-			writer = new BufferedWriter(new FileWriter("output.txt"));
+			
             while  ((currentLine = reader.readLine()) != null) {
            	count++;
                 
-                String [] strlist = currentLine.split("_");
-                Node n = new Node(strlist[0],strlist[1],null);
+                String [] strlist = currentLine.split(":");
+                Node n = new Node(strlist[0].trim(),strlist[1],null);
                 bs.insert(n.data.trim().toUpperCase(),n.mean,n.stringList);
                
                 mbs.insert(hash_function(n.mean),n.data,n.stringList);
@@ -36,6 +36,33 @@ class Input extends Dictionary{
 	finally{
 	try {
 		reader.close();
+	
+	}
+	catch(Exception r)
+	{
+	System.out.println(r);
+	
+
+	}
+	}
+}
+
+public void writeinput(String text1,String text2){
+		BufferedWriter writer = null;
+        try {
+			writer = new BufferedWriter(new FileWriter("input.txt",true));
+           
+         		  writer.newLine();
+               writer.write(text1+":"+text2);
+		}
+	catch(IOException e){
+	System.out.print(e);
+	
+	}
+
+	finally{
+	try {
+	
 		writer.close();
 	}
 	catch(Exception r)
@@ -46,4 +73,5 @@ class Input extends Dictionary{
 	}
 	}
 }
+
 }
