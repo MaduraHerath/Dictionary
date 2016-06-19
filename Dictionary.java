@@ -73,7 +73,7 @@ String insertStr ;
             public void actionPerformed(ActionEvent e){
                insertStr = field1.getText().trim().toUpperCase();
                insertStrmean = textarea.getText();
-            
+            	listModel.clear();
 
      			Node node = new Node(insertStr,insertStrmean,null);
      			bs.insert(node.data,node.mean,null);

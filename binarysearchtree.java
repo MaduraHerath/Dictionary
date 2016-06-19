@@ -2,10 +2,11 @@ import java.lang.*;
 import java.util.ArrayList;
 import java.awt.*;
 public class binarysearchtree {
+	
 	int count = 0;
 
  ArrayList<String> strlist = new ArrayList<String>();
-	String [] a = new String[100];
+	
 	public static Node root;
 	public binarysearchtree(){
 		this.root = null;
@@ -189,7 +190,7 @@ public boolean delete(String text){
 	public String [] similler(String Stext){
 		 int count = 0;
 		Node current = root;
-		
+		String [] a = new String[100];
 		
 		while (current != null){
 			
@@ -197,10 +198,13 @@ public boolean delete(String text){
 				
 			}
 			else{
-			if(Stext.equals(current.data)){
+			if(Stext.equals(current.data) || Stext.compareTo(current.data)>0){
+				if(Stext.equals(current.data)){
 				a[count] = (current.mean);
-				current = current.right;
+				
 				count++;
+			}
+			current = current.right;
 			}
 				else{
 				current = current.left;
@@ -221,7 +225,7 @@ public boolean delete(String text){
 	
 		Input in = new Input();
 		in.getinput(bs,mbs);
-		System.out.println(bs.search("House"));
+		
 		
 	}
 	

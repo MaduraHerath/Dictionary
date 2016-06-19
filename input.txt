@@ -1,6 +1,7 @@
-Home_place to live
-House_place to live
-CAT_Animal
-PIZZA_Food
-BOOK_THING
-ANt_Animal
+home_place to live
+house_place to live
+a_A
+b_A
+c_A
+groot_marvel character
+iron_marvel character

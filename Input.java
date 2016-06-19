@@ -21,6 +21,7 @@ class Input extends Dictionary{
                 bs.insert(n.data.trim().toUpperCase(),n.mean,n.stringList);
                
                 mbs.insert(hash_function(n.mean),n.data,n.stringList);
+                System.out.println(n.data +" "+hash_function(n.mean));
             
 
 	
