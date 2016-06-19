@@ -5,6 +5,7 @@ class Input extends Dictionary{
 	
 	public void getinput(binarysearchtree bs,binarysearchtree mbs ){
 		int count = 0;
+		boolean flag = false;
 		 BufferedReader reader = null;
 		
 		BufferedWriter writer = null;
@@ -25,7 +26,7 @@ class Input extends Dictionary{
 	
 
 		}
-          }
+		}
 	catch(IOException e){
 	System.out.print(e);
 	

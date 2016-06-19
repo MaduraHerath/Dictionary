@@ -81,6 +81,110 @@ public class binarysearchtree {
 	}
 
 
+public boolean delete(String text){
+		Node parent = root;
+		Node current = root;
+		boolean isLeftChild = false;
+		while(current.data!=text){
+			parent = current;
+			if((current.data).compareTo(text) > 0){
+				isLeftChild = true;
+				current = current.left;
+			}else{
+				isLeftChild = false;
+				current = current.right;
+			}
+			if(current ==null){
+				return false;
+			}
+		}
+		
+		if(current.left==null && current.right==null){
+			if(current==root){
+				root = null;
+			}
+			if(isLeftChild ==true){
+				parent.left = null;
+			}else{
+				parent.right = null;
+			}
+		}
+		
+		else if(current.right==null){
+			if(current==root){
+				root = current.left;
+			}else if(isLeftChild){
+				parent.left = current.left;
+			}else{
+				parent.right = current.left;
+			}
+		}
+		else if(current.left==null){
+			if(current==root){
+				root = current.right;
+			}else if(isLeftChild){
+				parent.left = current.right;
+			}else{
+				parent.right = current.right;
+			}
+		}else if(current.left!=null && current.right!=null){
+			
+			//now we have found the minimum element in the right sub tree
+			Node successor	 = getSuccessor(current);
+			if(current==root){
+				root = successor;
+			}else if(isLeftChild){
+				parent.left = successor;
+			}else{
+				parent.right = successor;
+			}			
+			successor.left = current.left;
+		}		
+		return true;		
+	}
+	
+	public Node getSuccessor(Node deleleNode){
+		Node successsor =null;
+		Node successsorParent =null;
+		Node current = deleleNode.right;
+		while(current!=null){
+			successsorParent = successsor;
+			successsor = current;
+			current = current.left;
+		}
+
+		if(successsor!=deleleNode.right){
+			successsorParent.left = successsor.right;
+			successsor.right = deleleNode.right;
+		}
+		return successsor;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	public String [] similler(String Stext){
 		 int count = 0;

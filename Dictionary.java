@@ -13,6 +13,9 @@ import java.util.LinkedList;
 import java.security.MessageDigest;
 import java.security.*;
 import java.math.BigInteger;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 
 public class Dictionary extends JFrame {
 	private static binarysearchtree bs = new binarysearchtree();
@@ -23,7 +26,7 @@ public class Dictionary extends JFrame {
 JPanel mainpanel = new JPanel();
 JTextArea textarea = new JTextArea(); 
 JTextField  field1 = new JTextField();
-JList list  = new JList();
+
 JButton SearchBtn = new JButton("Search");
 JButton InsertBtn = new JButton("Insert");
  String [] StrList ;
@@ -33,9 +36,12 @@ String insertStr ;
 
  DefaultListModel listModel = new DefaultListModel();
     	int btncount = 0;
-    	 String [] ass;
+    	 String [] ass = new String[100];
+    	
         public class event_SearchButton implements ActionListener {
             public void actionPerformed(ActionEvent e) {
+            	 String [] ass = new String[100];
+            	listModel.removeAllElements();
             	btncount++;
                searchStr = field1.getText().trim().toUpperCase();
                
@@ -47,15 +53,20 @@ String insertStr ;
 		String displayStr = bs.search(searchStr);
 		textarea.setText(displayStr);
 		ass = mbs.similler(hash_function(displayStr));
-		for (int i = 0;i <ass.length ;i++ ) {
-			
-		
+
+		int i = 0;
+		while(ass[i]!=null)
+			{
+			System.out.println(ass[i]);
 			listModel.addElement(ass[i]);
+			i++;
 					}
-					if (btncount >1){
-       listModel.removeAllElements();
-       btncount =0;
-       }		            }
+
+					
+					 	
+			
+					
+				            }
         }
 
         public class event_InsertButton implements ActionListener {
@@ -111,10 +122,10 @@ String insertStr ;
     
     	
     	
-    		JList list = new JList(listModel);
+    	JList list = new JList(listModel);
     	 list.setBounds(10, 50, 150, 200);
     	 mainpanel.add(list);
-
+    	 
 
     	
     	 textarea.setBounds(170, 50,500, 200);
@@ -127,7 +138,28 @@ String insertStr ;
 
     	 field1 = new JTextField();
     	field1.setBounds(10, 10, 220, 30);
-    	field1.setText("");
+    	field1.setText("Type here Mother fucker");
+    	field1.getDocument().addDocumentListener(new DocumentListener() {
+  public void changedUpdate(DocumentEvent e) {
+    warn();
+  }
+  public void removeUpdate(DocumentEvent e) {
+    warn();
+  }
+  public void insertUpdate(DocumentEvent e) {
+    warn();
+  }
+
+  public void warn() {
+  	textarea.setText("");
+  	listModel.removeAllElements();
+  	listModel.clear();
+  	 String [] ass = new String[100];
+  }
+});
+
+    	
+
     	mainpanel.add(field1);
         SearchBtn.setBounds(240, 10, 100, 30);
         InsertBtn.setBounds(350,10,100,30);
@@ -143,7 +175,7 @@ String insertStr ;
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-
+        
          event_SearchButton bds = new event_SearchButton();
        SearchBtn.addActionListener(bds);
        event_InsertButton eib  = new event_InsertButton();
@@ -155,6 +187,7 @@ String insertStr ;
     }
 
     public static void main(String[] args) {
+
     	
 		Input in = new Input();
 		in.getinput(bs,mbs);
